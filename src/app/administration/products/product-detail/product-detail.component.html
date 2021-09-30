@@ -1,0 +1,36 @@
+
+<div class="row">
+  <div class="col">
+    <a [routerLink]="['../']" class="text-primary" >zurück zur Übersicht</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-4">
+    <img class="img-thumbnail" [src]="product.imagePath" >
+  </div>
+  <div class="col-6">
+    <div class="row mb-4">
+      <div class="col">
+        <button class="btn btn-primary mr-2" [routerLink]="['edit']" >Bearbeiten</button>
+        <button class="btn btn-danger" (click)="onDelete()">Löschen</button>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-3">Name:</div>
+      <div class="col-9">{{ product.name }}</div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-3">Hersteller:</div>
+      <div class="col-9">{{ product.producer }}</div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-3">Kategorie:</div>
+      <div class="col-9"><a [routerLink]="['/administration/categories', category._id, 'edit']">{{ category.name }}</a></div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-3">Preis:</div>
+      <div class="col-9">{{ product.price | price }}</div>
+    </div>
+  </div>
+</div>

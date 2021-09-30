@@ -1,0 +1,36 @@
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()" >
+  <div class="row mb-4">
+    <div class="col">
+      <button class="btn-primary btn mr-2" type="submit" [disabled]="!editForm.valid">Speichern</button>
+      <button class="btn-warning btn mr-2" type="button" (click)="onReset()" >Zurücksetzen</button>
+      <button class="btn-secondary btn" type="button" [routerLink]="['/administration/categories']" >Abbrechen</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          formControlName="name">
+        <form-error [control]="name" ></form-error>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Beschreibung</label>
+        <textarea
+          class="form-control"
+          id="description"
+          name="description"
+          formControlName="description"></textarea>
+        <form-error [control]="description" ></form-error>
+
+      </div>
+    </div>
+  </div>
+</form>
+

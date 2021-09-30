@@ -1,0 +1,30 @@
+<div class="row mb-4">
+  <div class="col">
+    <button class="btn btn-primary" [routerLink]="['./new']" >Neue Kategorie</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Beschreibung</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories; let i = index" style="cursor: pointer;" [routerLink]="['./', i, 'edit']">
+          <td>{{ category._id }}</td>
+          <td>{{ category.name }}</td>
+          <td>{{ category.description | maxLength:60 }}</td>
+          <td class="text-right">
+            <span class="text-primary" (click)="onDelete(i)">Löschen</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

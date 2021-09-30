@@ -1,0 +1,37 @@
+<div class="row mb-4">
+  <div class="col">
+    <button class="btn btn-primary" [routerLink]="['new']">Neues Produkt</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let product of products; let i = index"
+        [routerLink]="[i]">
+
+        <div class="row">
+          <div class="col-1 d-flex flex-column justify-content-center">
+            <img
+              [src]="product.imagePath"
+              alt="Product image"
+              class="img-fluid">
+          </div>
+          <div class="col-7 d-flex flex-column">
+            <h5><a [routerLink]="[i]" >{{ product.name | maxLength:40}}</a></h5>
+            <a [routerLink]="['../categories', product.category, 'edit']">{{ categories[product.category].name }}</a>
+          </div>
+          <div class="col-2 align-middle d-flex flex-column justify-content-center">{{ product.producer }}</div>
+          <div class="col-2 d-flex flex-column justify-content-center text-right" >
+            <a
+              (click)="onDelete($event, i)"
+              style="cursor: pointer;" >löschen</a>
+          </div>
+        </div>
+
+      </li>
+    </ul>
+  </div>
+</div>

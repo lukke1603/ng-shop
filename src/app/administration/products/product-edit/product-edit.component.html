@@ -1,0 +1,90 @@
+
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <div class="row mb-4">
+    <div class="col">
+      <input class="btn btn-primary mr-2" type="submit" [disabled]="!editForm.valid" value="Speichern">
+      <button class="btn btn-warning mr-2" (click)="onReset()" >Zurücksetzen</button>
+      <button class="btn btn-secondary" (click)="cancelEdit()" >Abbrechen</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          formControlName="name">
+        <form-error [control]="!!(name.touched && name.errors?.minlength)" message="Der name muss mindestens 10 Zeichen beinhalten"></form-error>
+        <form-error [control]="!!(name.touched && name.errors?.required)" message="Bitte gebe einen gültigen Namen ein"></form-error>
+      </div>
+
+
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="imagePath">Bildpfad</label>
+            <input
+              type="text"
+              id="imagePath"
+              name="imagePath"
+              class="form-control"
+              formControlName="imagePath"
+              >
+            <form-error [control]="imagePath" message="Bitte gib eine gültige Bild-URL ein"></form-error>
+          </div>
+
+          <div class="form-group">
+            <label for="producer">Hersteller</label>
+            <input
+              type="text"
+              id="producer"
+              name="producer"
+              class="form-control"
+              formControlName="producer" >
+            <form-error [control]="producer" message="Bitte gib einen gültigen Hersteller ein"></form-error>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Kategorie</label>
+            <select
+              type="text"
+              id="category"
+              name="category"
+              class="form-control"
+              formControlName="category" >
+
+              <option value="" disabled >--- bitte wählen ---</option>
+              <option
+                *ngFor="let cat of categories; let i = index"
+                [ngValue]="cat._id"
+
+              >{{ cat.name }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="price">Preis</label>
+            <input
+              type="number"
+              step=".01"
+              id="price"
+              name="price"
+              class="form-control"
+              formControlName="price" >
+            <form-error [control]="price" message="Bitte gib einen gültigen Preis ein"></form-error>
+          </div>
+        </div>
+        <div class="col-6 text-center">
+          <img *ngIf="editForm.value.imagePath" class="img-fluid ml-auto mr-auto" [src]="editForm.value.imagePath" >
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</form>
+
